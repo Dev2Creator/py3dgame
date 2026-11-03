@@ -73,3 +73,20 @@ CI without a display.
 Dependency direction stays one-way: `platform` and `renderer2d` never import
 `core`; `core` imports both; `physics` and `world` depend only on `math3d` so the
 renderer can be replaced without touching simulation code.
+
+## Atmosphere layer (0.3.0)
+
+`renderer2d/{sky,fog,lightning,reflection,shader}.py` depend only on `canvas.py`,
+`palette.py` and `world/daynight.py`; nothing below them imports a window or a
+scene. That keeps the passes usable headless (tests, batch renders) and reusable
+once a 3D renderer exists.
+
+```
+world.daynight -> renderer2d.sky        (palette + sun position)
+renderer2d.palette -> sky, fog, reflection, shader
+renderer2d.canvas  -> sky, fog, lightning, reflection, shader
+```
+
+Order matters and is the caller's job: sky, geometry, reflection, fog,
+lighting, then post-processing. `examples/atmosphere_demo.py` is the reference
+ordering.

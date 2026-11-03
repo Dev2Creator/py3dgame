@@ -30,7 +30,7 @@ def test_every_exported_name_exists():
 def test_unimplemented_systems_are_not_exported():
     # 3D, physics-3D, audio and the editor are not implemented yet, so their
     # names must stay out of the public surface.
-    for absent in ("Mesh", "RigidBody", "AudioClip", "Editor", "Shader"):
+    for absent in ("Mesh", "Material", "RigidBody", "AudioClip", "Skeleton", "Editor"):
         assert not hasattr(p3d, absent), f"{absent} must not exist until it works"
 
 

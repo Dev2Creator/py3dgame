@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 - atmosphere layer
+
+- `Sky` draws a day/night gradient, horizon haze, sun disc and stars from the
+  same `SunState` that lights the world.
+- `Fog` blends toward a colour with a density and falloff curve, so the same
+  parameters can drive a future 3D pipeline.
+- `Lightning` provides a flash envelope, screen glow and a jagged bolt.
+- `WaterSurface` mirrors the frame across an axis with opacity and animated ripple.
+- `Shader` / `ShaderStack` add CPU post-processing: grayscale, tint, vignette,
+  scanlines, posterize, plus custom pixel callables.
+- 105 tests.
+
+
 ## 0.2.0 - 2026-11-03
 
 Added a real 2D toolchain and Dunia-inspired world simulation.

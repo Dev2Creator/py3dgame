@@ -2,7 +2,7 @@
 
 *Create games. Write Python.*
 
-A Python-native game library. This is release **0.2.0**: the runtime foundation plus a working 2D toolchain and Dunia-inspired world simulation.
+A Python-native game library. This is release **0.3.0**: the runtime foundation, a working 2D toolchain, Dunia-inspired world simulation and an atmosphere layer (sky, fog, lightning, reflections, shaders).
 a real window (or headless surface), a fixed-timestep game loop, input with
 action bindings, a scene graph with real transform maths, and a software 2D
 rasteriser.
