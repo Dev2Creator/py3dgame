@@ -22,8 +22,27 @@ are not exported.
 
 from __future__ import annotations
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 
+from .ai import (
+    AIJobSystem,
+    AIResult,
+    AIRuntime,
+    AIStats,
+    Capability,
+    ChatRequest,
+    ChatResponse,
+    GenerationParams,
+    Message,
+    MockProvider,
+    OllamaProvider,
+    OpenAICompatibleProvider,
+    ProviderConfig,
+    ProviderError,
+    Role,
+    Usage,
+    build_provider,
+)
 from .core.game import Game
 from .core.scene import Node, Scene, Transform
 from .exceptions import (
@@ -88,6 +107,23 @@ from .world.destruction import Destructible, DestructionSystem
 from .world.fire import BURNING, BURNT, UNBURNT, FireGrid, FireStats
 
 __all__ = [
+    "AIJobSystem",
+    "AIResult",
+    "AIRuntime",
+    "AIStats",
+    "Capability",
+    "ChatRequest",
+    "ChatResponse",
+    "GenerationParams",
+    "Message",
+    "MockProvider",
+    "OllamaProvider",
+    "OpenAICompatibleProvider",
+    "ProviderConfig",
+    "ProviderError",
+    "Role",
+    "Usage",
+    "build_provider",
     "Camera",
     "ColorBuffer",
     "DirectionalLight",

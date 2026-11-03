@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.0 — 2026-11-03
+
+Added
+
+- `py3dgame.ai`: provider-neutral AI runtime with Ollama and OpenAI-compatible
+  adapters, a deterministic mock provider, capability metadata, bounded
+  concurrency, queue limits, retries with backoff, cooperative cancellation,
+  opt-in caching and secret redaction.
+- `AIJobSystem`: submit/update facade that keeps inference off the fixed step and
+  validates structured model output through a caller-supplied validator.
+- `docs/ENGINE_STATUS.md` (verified assessment) and `docs/AI_RUNTIME.md`.
+- `examples/ai_dialogue.py`, offline by default.
+
+Notes
+
+- Streaming, embeddings, tool calling and image input are not implemented and
+  are reported as unsupported capabilities.
+- Remote providers require explicit `allow_remote=True`.
+
 ## 0.4.0 - 3D pipeline
 
 * `math3d`: `Vec4`, `Mat3`, `Quaternion`, `Transform3D`, `Plane3`, `Frustum`,

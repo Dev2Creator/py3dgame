@@ -122,3 +122,23 @@ renderer.save_png("cube.png")
 Model, view, projection, near-plane clipping, backface culling, depth testing,
 perspective-correct interpolation and six shading models. See
 [docs/RENDERING.md](docs/RENDERING.md) and [docs/MATH3D.md](docs/MATH3D.md).
+
+## Optional AI runtime
+
+`py3dgame.ai` is provider-neutral and never imported by rendering, physics or
+scene code. Chat runs off the game loop: `submit()` returns immediately and
+`AIJobSystem.update()` drains finished results inside your fixed step.
+
+```python
+runtime = p3d.AIRuntime(p3d.ProviderConfig(provider="ollama", model="llama3"))
+jobs = p3d.AIJobSystem(runtime)
+jobs.submit([p3d.Message("user", "The ferry is late. React in one line.")])
+```
+
+Capabilities are per adapter and honest: the Ollama and OpenAI-compatible
+adapters support chat, JSON mode, model listing and usage; streaming, embeddings
+and image input are declared unsupported rather than faked. Remote endpoints are
+refused unless `allow_remote=True`, keys come from environment variables, and
+secrets are redacted from errors.
+
+See `docs/AI_RUNTIME.md` and `docs/ENGINE_STATUS.md`.
