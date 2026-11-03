@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py3dgame"
+version = "0.1.0"
+description = "Python-native game library: window, fixed-timestep loop, input, scene graph and software 2D renderer"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary - all rights reserved" }
+authors = [{ name = "Anika Mukherjee", email = "cuteypieanika@gmail.com" }]
+keywords = ["game", "gamedev", "engine", "2d", "3d", "python"]
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Topic :: Games/Entertainment",
+]
+dependencies = []
+
+[project.optional-dependencies]
+window = ["pygame>=2.5"]
+dev = ["pytest>=8.0", "build>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/Dev2Creator/py3dgame"
+
+[tool.setuptools]
+packages = [
+  "py3dgame",
+  "py3dgame.core",
+  "py3dgame.platform",
+  "py3dgame.input",
+  "py3dgame.renderer2d",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
