@@ -54,3 +54,22 @@ semantics, input frame semantics, canvas pixel assertions, window lifecycle,
 and loop determinism (`advance`/`drop`/`quit` paths). The pygame backend is
 exercised under the SDL `dummy` video driver, so the real backend is covered in
 CI without a display.
+
+
+## 0.2.0 subsystem additions
+
+| Module | Responsibility | Depends on |
+| --- | --- | --- |
+| `renderer2d/image.py` | PNG encode/decode, RGBA buffers | `zlib`, `struct` |
+| `renderer2d/sprite.py` | sprites, sheets, animation | `image`, `canvas` |
+| `renderer2d/lighting2d.py` | additive lightmap, ambient | `canvas` |
+| `physics/body.py` | shapes, mass, layers, triggers | `math3d` |
+| `physics/collision.py` | manifolds for circle/box pairs | `body` |
+| `physics/world.py` | integration, contacts, CCD, raycasts | `body`, `collision` |
+| `world/daynight.py` | 24h clock, sun vector, palette | `math3d` |
+| `world/fire.py` | cellular fire automaton | `math3d`, `random` |
+| `world/destruction.py` | health states, radial damage | `math3d` |
+
+Dependency direction stays one-way: `platform` and `renderer2d` never import
+`core`; `core` imports both; `physics` and `world` depend only on `math3d` so the
+renderer can be replaced without touching simulation code.

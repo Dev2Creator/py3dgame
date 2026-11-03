@@ -61,6 +61,24 @@ class Canvas:
             offset = (y * self.width + x) * 4
             self.surface[offset:offset + 4] = bytes((r, g, b, a))
 
+    def blend_pixel(self, x: int, y: int, colour) -> None:
+        """Alpha-blend a colour over the canvas, clipping at the edges."""
+        r, g, b, a = _rgba(colour)
+        if a == 0:
+            return
+        if not (0 <= x < self.width and 0 <= y < self.height):
+            return
+        i = (y * self.width + x) * 4
+        buffer = self.surface
+        if a == 255:
+            buffer[i:i + 4] = bytes((r, g, b, 255))
+            return
+        inv = 255 - a
+        buffer[i] = (r * a + buffer[i] * inv) // 255
+        buffer[i + 1] = (g * a + buffer[i + 1] * inv) // 255
+        buffer[i + 2] = (b * a + buffer[i + 2] * inv) // 255
+        buffer[i + 3] = min(255, buffer[i + 3] + a)
+
     def get_pixel(self, x: int, y: int) -> Tuple[int, int, int, int]:
         x, y = int(x), int(y)
         if not (0 <= x < self.width and 0 <= y < self.height):

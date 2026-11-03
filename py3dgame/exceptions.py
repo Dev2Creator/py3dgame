@@ -25,3 +25,7 @@ class SceneError(Py3DGameError):
 
 class AssetNotFoundError(Py3DGameError):
     """A requested asset does not exist or could not be read."""
+
+
+class ImageFormatError(Py3DGameError):
+    """An image file is malformed or uses an unsupported encoding."""

@@ -2,12 +2,12 @@
 
 *Create games. Write Python.*
 
-A Python-native game library. This is release **0.1.0**, the runtime foundation:
+A Python-native game library. This is release **0.2.0**: the runtime foundation plus a working 2D toolchain and Dunia-inspired world simulation.
 a real window (or headless surface), a fixed-timestep game loop, input with
 action bindings, a scene graph with real transform maths, and a software 2D
 rasteriser.
 
-**Status honesty:** 3D rendering, physics, audio, animation, assets, UI and the
+**Status honesty:** 3D rendering, 3D physics, audio, skeletal animation, UI and the
 editor do **not** exist yet. `AGENTS.md` is the full specification; the roadmap
 below lists what is implemented and what is not. No placeholder APIs are exposed
 for unimplemented systems.
@@ -46,6 +46,13 @@ game.run()
 | --- | --- |
 | Package, wheel, clean-venv install | working |
 | Game lifecycle and fixed-timestep loop | working, deterministic tests |
+| PNG decode/encode, images, crops | working, no image dependency |
+| Sprites, sheets, frame animation | working, pixel-tested |
+| 2D lighting lightmap | working, additive with ambient |
+| 2D rigid bodies, contacts, raycasts | working, CCD against tunnelling |
+| Day/night clock | working, palette + sun vector |
+| Fire spread grid | working, wind + moisture, seeded |
+| Destructible props | working, damage states + debris |
 | Window backends: headless, pygame/SDL2 | working, both tested |
 | Input: keys, mouse, wheel, actions, callbacks | working |
 | Scene graph: nodes, parenting, transforms, update hooks | working |
@@ -73,6 +80,12 @@ python examples/hello_world.py
 ```
 
 From a checkout without installing, run examples with `PYTHONPATH=.`.
+
+## Dunia-inspired systems
+
+`docs/DUNIA.md` maps each Dunia capability to what is implemented here, what is
+prototyped, and what is deliberately absent. Short version: the clock, fire and
+destruction are real; vegetation, GI, terrain, vehicles and streaming are not.
 
 ## Roadmap (spec order)
 
