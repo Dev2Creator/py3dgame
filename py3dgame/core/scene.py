@@ -26,6 +26,24 @@ class Transform:
     rotation: Vec3 = field(default_factory=Vec3)
     scale: Vec3 = field(default_factory=lambda: Vec3(1.0, 1.0, 1.0))
 
+    def __post_init__(self) -> None:
+        """Accept plain tuples as well as Vec3 so transforms stay easy to write."""
+        for name, default in (("position", (0.0, 0.0, 0.0)), ("rotation", (0.0, 0.0, 0.0)),
+                              ("scale", (1.0, 1.0, 1.0))):
+            value = getattr(self, name, None)
+            if isinstance(value, Vec3):
+                continue
+            if value is None:
+                setattr(self, name, Vec3(*default))
+                continue
+            try:
+                setattr(self, name, Vec3(*value))
+            except TypeError as exc:
+                raise TypeError(
+                    f"{name} accepts a Vec3 or a 3-item sequence, not {type(value).__name__}; "
+                    "use py3dgame.Transform3D for quaternion rotations"
+                ) from exc
+
     def local_matrix(self) -> Mat4:
         translate = Mat4.translation(self.position.x, self.position.y, self.position.z)
         rotate = (
@@ -35,6 +53,24 @@ class Transform:
         )
         scale = Mat4.scaling(self.scale.x, self.scale.y, self.scale.z)
         return translate.multiply(rotate).multiply(scale)
+
+
+    def matrix(self) -> Mat4:
+        """Compose position, Euler rotation and scale into a model matrix."""
+        from ..math3d import Mat4
+
+        translation = Mat4.translation(self.position.x, self.position.y, self.position.z)
+        rotation = (Mat4.rotation_z(self.rotation.z)
+                    .multiply(Mat4.rotation_y(self.rotation.y))
+                    .multiply(Mat4.rotation_x(self.rotation.x)))
+        scaling = Mat4.scaling(self.scale.x, self.scale.y, self.scale.z)
+        return translation.multiply(rotation).multiply(scaling)
+
+    def normal_matrix(self):
+        from ..math3d import Mat3, Quaternion
+
+        rotation = Quaternion.from_euler(self.rotation.x, self.rotation.y, self.rotation.z)
+        return Mat3.from_quaternion(rotation)
 
 
 class Node:

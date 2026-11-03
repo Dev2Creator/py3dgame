@@ -103,3 +103,22 @@ destruction are real; vegetation, GI, terrain, vehicles and streaming are not.
 ## Licence
 
 Proprietary, all rights reserved. See `LICENSE`.
+
+## 3D pipeline
+
+```python
+import py3dgame as p3d
+
+renderer = p3d.SoftwareRenderer(
+    width=640, height=360,
+    camera=p3d.PerspectiveCamera(50, 16 / 9, 0.5, 80, position=(4, 3, 6)).look_at(p3d.Vec3(0, 1, 0)),
+)
+renderer.lights = [p3d.DirectionalLight(direction=p3d.Vec3(0.4, -1, -0.3), intensity=0.9)]
+renderer.draw(p3d.Mesh.cube(1.6), p3d.Transform3D(rotation=p3d.Quaternion.from_euler(0, 30, 0)),
+              p3d.Material(base_colour=(228, 132, 74), shading="lambert"))
+renderer.save_png("cube.png")
+```
+
+Model, view, projection, near-plane clipping, backface culling, depth testing,
+perspective-correct interpolation and six shading models. See
+[docs/RENDERING.md](docs/RENDERING.md) and [docs/MATH3D.md](docs/MATH3D.md).

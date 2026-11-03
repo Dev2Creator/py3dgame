@@ -1,6 +1,6 @@
 """py3dgame: a Python-native game library.
 
-Release 0.3.0 covers the runtime foundation, a 2D toolchain and an atmosphere
+Release 0.4.0 adds a real 3D pipeline on top of the 2D engine and atmosphere
 layer:
 
 * window backends (headless, optional pygame/SDL2)
@@ -12,6 +12,9 @@ layer:
 * Dunia-inspired world systems: day/night clock, fire spread, destruction
 * Atmosphere: procedural sky, density fog, lightning, water reflections and
   per-pixel post-processing shaders
+* 3D: Vec4/Mat3/Quaternion/Transform/Frustum, perspective and orthographic
+  cameras, indexed meshes, materials, directional/point/spot lights and a
+  software rasteriser with depth testing and six shading models
 
 3D rendering, skeletal animation, audio and the editor are not implemented and
 are not exported.
@@ -19,7 +22,7 @@ are not exported.
 
 from __future__ import annotations
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 from .core.game import Game
 from .core.scene import Node, Scene, Transform
@@ -32,7 +35,21 @@ from .exceptions import (
     SceneError,
 )
 from .input.manager import InputState
-from .math3d import Mat4, Vec2, Vec3
+from .graphics import (
+    Camera,
+    ColorBuffer,
+    Material,
+    Mesh,
+    OrthographicCamera,
+    PerspectiveCamera,
+    RenderStats,
+    Renderer,
+    SoftwareRenderer,
+    Vertex,
+)
+from .lighting import DirectionalLight, PointLight, SpotLight
+from .math3d import Frustum, Mat3, Mat4, Plane3, Quaternion, Vec2, Vec3, Vec4
+from .math3d import Transform as Transform3D
 from .physics.body import Body, Box, Circle
 from .physics.collision import Manifold, collide
 from .physics.world import Contact, PhysicsWorld, RayHit
@@ -71,6 +88,25 @@ from .world.destruction import Destructible, DestructionSystem
 from .world.fire import BURNING, BURNT, UNBURNT, FireGrid, FireStats
 
 __all__ = [
+    "Camera",
+    "ColorBuffer",
+    "DirectionalLight",
+    "Frustum",
+    "Mat3",
+    "Material",
+    "Mesh",
+    "OrthographicCamera",
+    "PerspectiveCamera",
+    "Plane3",
+    "PointLight",
+    "Quaternion",
+    "RenderStats",
+    "Renderer",
+    "SoftwareRenderer",
+    "SpotLight",
+    "Transform3D",
+    "Vec4",
+    "Vertex",
     "Fog",
     "FogSettings",
     "Lightning",

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0 - 3D pipeline
+
+* `math3d`: `Vec4`, `Mat3`, `Quaternion`, `Transform3D`, `Plane3`, `Frustum`,
+  `transform_vec4`, `transform_direction` (2D API untouched)
+* `graphics`: `ColorBuffer` with depth, `PerspectiveCamera`, `OrthographicCamera`,
+  `Mesh` (triangle/plane/cube), `Vertex`, `Material`, `Rasterizer`, `SoftwareRenderer`
+* `lighting`: `DirectionalLight`, `PointLight`, `SpotLight` and six shading models
+  (unlit, lambert, phong, blinn, toon, simplified PBR)
+* Rasteriser: near-plane clipping, backface culling, depth test,
+  perspective-correct UV/normal/world interpolation, per-mesh frustum culling
+* `core.scene.Transform` gained `matrix()`/`normal_matrix()` so scene nodes can be
+  drawn directly; both transform types are accepted by the renderer
+* Examples: `3d_triangle.py`, `rotating_cube.py`; docs: `RENDERING.md`,
+  `MATH3D.md`, `ROADMAP.md`
+* Tests: 130 passing (25 new)
+
 ## 0.3.0 - atmosphere layer
 
 - `Sky` draws a day/night gradient, horizon haze, sun disc and stars from the
