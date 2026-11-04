@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+- Scene documents: validated JSON scenes with nodes, transforms, materials, lights
+  and camera; save/load with `DocumentError` for every malformed field.
+- `render_document` renders a document headlessly to an `Image` or PNG bytes.
+- `PreviewServer` serves a loopback-only, read-only preview (`/`, `/frame.png`,
+  `/api/scene`) so a scene can be inspected without writing UI.
+- Preview server refuses non-loopback binding and has no upload or file access.
+- 160 tests, wheel and sdist verified in a clean venv.
+
 ## 0.5.0 — 2026-11-03
 
 Added

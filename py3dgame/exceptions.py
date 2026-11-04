@@ -27,5 +27,9 @@ class AssetNotFoundError(Py3DGameError):
     """A requested asset does not exist or could not be read."""
 
 
+class DocumentError(Py3DGameError):
+    """A scene document is malformed or violates the schema."""
+
+
 class ImageFormatError(Py3DGameError):
     """An image file is malformed or uses an unsupported encoding."""

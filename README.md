@@ -8,7 +8,7 @@ Pure Python, zero required dependencies. Everything runs headless, so tests and 
 pip install py3dgame            # once published; see Install for the current route
 ```
 
-**Status:** 0.5.0, pre-1.0 and deliberately staged. This README states what works and what does not, because a game engine that lies about its features wastes your afternoon.
+**Status:** 0.6.0, pre-1.0 and deliberately staged. This README states what works and what does not, because a game engine that lies about its features wastes your afternoon.
 
 ---
 
@@ -173,6 +173,8 @@ Legend: **working** means implemented, tested and exercised by an example. **par
 
 ---
 
+| Editor foundation | working: scene documents, headless preview, loopback preview server (no UI yet) |
+
 ## Architecture
 
 ```
@@ -208,6 +210,7 @@ Run any example from the repository root after `pip install -e .`.
 | `examples/rotating_cube.py` | 8-frame cube turntable with ground plane |
 | `examples/atmosphere_demo.py` | sky, fog, lightning, water, post-processing |
 | `examples/dunia_demo.py` | fire spread, destruction, day/night, physics |
+| `examples/editor_preview.py` | saves a scene document, renders it, optional live preview |
 | `examples/ai_dialogue.py` | AI job submitted from the loop, result polled safely |
 
 All examples run headless and write output they can describe, so they are usable in CI.
@@ -238,10 +241,10 @@ What that means in practice: use it for tooling, tests, offline renders and lear
 | --- | --- |
 | 0.4.0 | 3D maths, cameras, meshes, software rasteriser (done) |
 | 0.5.0 | optional AI runtime and provider adapters (done) |
-| 0.6.0 | texture mapping depth, shadow maps, tone mapping |
-| 0.7.0 | terrain, chunked LOD, vegetation batching |
+| 0.6.0 | scene documents and the preview server (done) |
+| 0.7.0 | shadow maps, texture pipeline, tone mapping |
 | 0.8.0 | entity-component scene system, animation, particles |
-| 0.9.0 | world streaming, spatial indexing, profiler |
+| 0.9.0 | terrain, vegetation, world streaming, profiler |
 | 1.0.0 | stable integrated engine |
 
 Full detail and the reasoning behind the order: [docs/ROADMAP.md](docs/ROADMAP.md).
@@ -265,6 +268,7 @@ Full detail and the reasoning behind the order: [docs/ROADMAP.md](docs/ROADMAP.m
 - [docs/RENDERING.md](docs/RENDERING.md): pipeline stages and limits
 - [docs/MATH3D.md](docs/MATH3D.md): conventions, handedness, matrices
 - [docs/AI_RUNTIME.md](docs/AI_RUNTIME.md): providers, retries, cancellation, security
+- [docs/EDITOR.md](docs/EDITOR.md): scene documents and the preview server
 - [docs/ATMOSPHERE.md](docs/ATMOSPHERE.md): sky, fog, lightning, reflection, shaders
 - [docs/DUNIA.md](docs/DUNIA.md): world simulation systems
 - [docs/ROADMAP.md](docs/ROADMAP.md): staged releases
@@ -278,3 +282,4 @@ Full detail and the reasoning behind the order: [docs/ROADMAP.md](docs/ROADMAP.m
 Proprietary, all rights reserved. See [LICENSE](LICENSE). Contact the author for licensing terms.
 
 Author: Anika Mukherjee (Dev2Creator), cuteypieanika@gmail.com
+

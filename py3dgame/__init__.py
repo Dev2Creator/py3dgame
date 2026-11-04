@@ -22,7 +22,7 @@ are not exported.
 
 from __future__ import annotations
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 from .ai import (
     AIJobSystem,
@@ -45,8 +45,16 @@ from .ai import (
 )
 from .core.game import Game
 from .core.scene import Node, Scene, Transform
+from .editor import (
+    NodeDocument,
+    PreviewServer,
+    SceneDocument,
+    render_document,
+    render_document_png,
+)
 from .exceptions import (
     AssetNotFoundError,
+    DocumentError,
     BackendError,
     ConfigurationError,
     ImageFormatError,
@@ -163,6 +171,7 @@ __all__ = [
     "AssetNotFoundError",
     "BackendError",
     "Body",
+    "DocumentError",
     "Box",
     "BURNING",
     "BURNT",
@@ -191,6 +200,8 @@ __all__ = [
     "MouseMove",
     "MouseWheel",
     "Node",
+    "NodeDocument",
+    "PreviewServer",
     "PhysicsWorld",
     "Py3DGameError",
     "PygameWindow",
@@ -198,6 +209,7 @@ __all__ = [
     "RayHit",
     "Resize",
     "Scene",
+    "SceneDocument",
     "SceneError",
     "Sprite",
     "SpriteSheet",

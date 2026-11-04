@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "py3dgame"
-version = "0.5.0"
+version = "0.6.0"
 description = "Python-native game library: window, loop, input, scene graph, sprites, PNG, lighting, 2D physics and Dunia-inspired world simulation"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -40,6 +40,7 @@ packages = [
   "py3dgame.lighting",
   "py3dgame.ai",
   "py3dgame.ai.providers",
+  "py3dgame.editor",
 ]
 
 [tool.pytest.ini_options]
